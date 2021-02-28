@@ -1,9 +1,7 @@
 require "./spec_helper"
 
 describe Airtable do
-  # TODO: Write tests
-
-  it "works" do
-    false.should eq(true)
+  it "initializes Base without error" do
+    base = Airtable::Base.new "api_key", "base_id"
   end
 end

@@ -2,5 +2,8 @@
 module Airtable
   VERSION = "0.1.0"
 
-  # TODO: Put your code here
+  class Base
+    def initialize(api_key : String, base_id : String)
+    end
+  end
 end
