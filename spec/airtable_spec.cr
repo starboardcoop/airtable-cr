@@ -1,15 +1,6 @@
 require "./spec_helper"
 require "./dummies/requester"
-
-class SpyBase < Airtable::Base
-  def api_key
-    @api_key
-  end
-
-  def id
-    @base_id
-  end
-end
+require "./spies/base"
 
 describe Airtable do
   it "initializes Base without error" do
