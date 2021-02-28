@@ -8,4 +8,8 @@ class SpyBase < Airtable::Base
   def id
     @base_id
   end
+
+  def requester
+    @requester
+  end
 end

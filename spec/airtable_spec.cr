@@ -3,10 +3,6 @@ require "./dummies/requester"
 require "./spies/base"
 
 describe Airtable do
-  it "initializes Base without error" do
-    base = Airtable::Base.new "api_key", "base_id"
-  end
-
   it "initializes Base with api_key" do
     base = SpyBase.new "cheese", "base_id"
     base.api_key.should eq "cheese"
@@ -15,6 +11,17 @@ describe Airtable do
   it "initializes Base with base_id" do
     base = SpyBase.new "api_key", "crackers"
     base.id.should eq "crackers"
+  end
+
+  it "initializes Base with requester" do
+    requester = DummyRequester.new
+    base = SpyBase.new "ai_key", "base_id", requester
+    base.requester.should be requester
+  end
+
+  it "initializes Base with requester if not given" do
+    base = SpyBase.new "ai_key", "base_id"
+    base.requester.should be_a Airtable::HTTPRequester
   end
 
   it "returns a Table" do
