@@ -16,5 +16,11 @@ module Airtable
 
     def initialize(@name : String)
     end
+
+    def all : Array(Hash(String, String))
+      records = Array(Hash(String, String)).new
+      records.push Hash(String, String).new
+      records
+    end
   end
 end
