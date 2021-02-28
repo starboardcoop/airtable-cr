@@ -9,9 +9,29 @@ class DummyRequester < Airtable::Requester
   end
 end
 
+class SpyBase < Airtable::Base
+  def api_key
+    @api_key
+  end
+
+  def id
+    @base_id
+  end
+end
+
 describe Airtable do
   it "initializes Base without error" do
     base = Airtable::Base.new "api_key", "base_id"
+  end
+
+  it "initializes Base with api_key" do
+    base = SpyBase.new "cheese", "base_id"
+    base.api_key.should eq "cheese"
+  end
+
+  it "initializes Base with base_id" do
+    base = SpyBase.new "api_key", "crackers"
+    base.id.should eq "crackers"
   end
 
   it "returns a Table" do
