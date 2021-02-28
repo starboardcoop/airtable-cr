@@ -15,12 +15,12 @@ describe Airtable do
 
   it "initializes Base with requester" do
     requester = DummyRequester.new
-    base = SpyBase.new "ai_key", "base_id", requester
+    base = SpyBase.new "api_key", "base_id", requester
     base.requester.should be requester
   end
 
   it "initializes Base with requester if not given" do
-    base = SpyBase.new "ai_key", "base_id"
+    base = SpyBase.new "api_key", "base_id"
     base.requester.should be_a Airtable::HTTPRequester
   end
 
