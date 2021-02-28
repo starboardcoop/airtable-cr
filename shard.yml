@@ -1,0 +1,9 @@
+name: airtable
+version: 0.1.0
+
+authors:
+  - Dillon Fagan <dillonfagan@pm.me>
+
+crystal: 0.36.1
+
+license: MIT
