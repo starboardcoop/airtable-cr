@@ -1,5 +1,14 @@
 require "./spec_helper"
 
+class DummyRequester < Airtable::Requester
+  def initialize
+  end
+
+  def get(endpoint : String) : String
+    return %({ "records": ["monkey"] })
+  end
+end
+
 describe Airtable do
   it "initializes Base without error" do
     base = Airtable::Base.new "api_key", "base_id"
@@ -11,10 +20,11 @@ describe Airtable do
     table.name.should eq "table"
   end
 
-  it "returns all records in a Table" do
-    base = Airtable::Base.new "api_key", "base_id"
+  it "returns expected record in a Table" do
+    requester = DummyRequester.new
+    base = Airtable::Base.new "api_key", "base_id", requester
     table = base.in "monkies"
-    records = table.all
-    records.size.should eq 1
+    records = table.all["records"]
+    records[0].should eq "monkey"
   end
 end
